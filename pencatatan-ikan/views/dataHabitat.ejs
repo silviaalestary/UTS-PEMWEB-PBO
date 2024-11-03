@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistem Informasi Manajemen Ikan</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <%- include('header') %>
+    <div class="container mt-5">
+      <h1>Data Habitat</h1>
+      <form action="/habitat/add" method="POST" class="mb-4">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            name="nama_habitat"
+            placeholder="Nama Habitat"
+            required
+          />
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+              Tambah Habitat
+            </button>
+          </div>
+        </div>
+      </form>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>ID</th>
+            <th>Nama Habitat</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% habitat.forEach(habitatItem => { %>
+          <tr>
+            <td><%= habitatItem.id %></td>
+            <td><%= habitatItem.nama_habitat %></td>
+            <td>
+              <a
+                href="/habitat/edit/<%= habitatItem.id %>"
+                class="btn btn-warning btn-sm"
+                >Edit</a
+              >
+              <form
+                action="/habitat/delete/<%= habitatItem.id %>"
+                method="POST"
+                style="display: inline"
+              >
+                <button class="btn btn-danger btn-sm" type="submit">
+                  Hapus
+                </button>
+              </form>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <%- include('footer') %>
+  </body>
+</html>

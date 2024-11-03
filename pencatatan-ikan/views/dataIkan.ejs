@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistem Informasi Manajemen Ikan</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <%- include('header') %>
+    <div class="container mt-5">
+      <h1 class="mb-4">Data Ikan</h1>
+
+      <!-- Add Fish Form -->
+      <h2>Tambah Ikan</h2>
+      <form action="/ikan/add" method="POST" class="mb-4">
+        <div class="form-group">
+          <input
+            type="text"
+            name="nama_ikan"
+            class="form-control"
+            placeholder="Nama Ikan"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="spesies_id">Spesies</label>
+          <select name="spesies_id" class="form-control" required>
+            <option value="">Pilih Spesies</option>
+            <% spesies.forEach(function(spesies) { %>
+            <option value="<%= spesies.id %>">
+              <%= spesies.nama_spesies %>
+            </option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="habitat_id">Habitat</label>
+          <select name="habitat_id" class="form-control" required>
+            <option value="">Pilih Habitat</option>
+            <% habitat.forEach(function(habitat) { %>
+            <option value="<%= habitat.id %>">
+              <%= habitat.nama_habitat %>
+            </option>
+            <% }) %>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Tambah</button>
+      </form>
+
+      <!-- Fish Table -->
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Nama Ikan</th>
+            <th>Spesies</th>
+            <th>Habitat</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% ikan.forEach(function(item) { %>
+          <tr>
+            <td><%= item.nama_ikan %></td>
+            <td><%= item.nama_spesies %></td>
+            <td><%= item.nama_habitat %></td>
+            <td>
+              <!-- Edit Button -->
+              <a
+                href="/ikan/edit/<%= item.id %>"
+                class="btn btn-warning btn-sm"
+              >
+                Edit
+              </a>
+              <!-- Delete Button -->
+              <form
+                action="/ikan/delete/<%= item.id %>"
+                method="POST"
+                class="d-inline"
+              >
+                <button type="submit" class="btn btn-danger btn-sm">
+                  Delete
+                </button>
+              </form>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <%- include('footer') %>
+  </body>
+</html>

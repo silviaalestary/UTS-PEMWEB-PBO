@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistem Informasi Manajemen Ikan</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <%- include('header') %>
+
+    <div class="container mt-5">
+      <h1>Edit Ikan</h1>
+      <form action="/ikan/update/<%= ikan.id %>" method="POST">
+        <div class="form-group">
+          <label for="nama_ikan">Nama Ikan:</label>
+          <input
+            type="text"
+            id="nama_ikan"
+            name="nama_ikan"
+            class="form-control"
+            value="<%= ikan.nama_ikan %>"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="spesies_id">Spesies:</label>
+          <select name="spesies_id" id="spesies_id" class="form-control" required>
+            <option value="">Pilih Spesies</option>
+            <% spesies.forEach(function(spesies) { %>
+              <option
+                value="<%= spesies.id %>"
+                <%= spesies.id === ikan.spesies_id ? 'selected' : '' %>
+              >
+                <%= spesies.nama_spesies %>
+              </option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="habitat_id">Habitat:</label>
+          <select name="habitat_id" id="habitat_id" class="form-control" required>
+            <option value="">Pilih Habitat</option>
+            <% habitat.forEach(function(habitat) { %>
+              <option
+                value="<%= habitat.id %>"
+                <%= habitat.id === ikan.habitat_id ? 'selected' : '' %>
+              >
+                <%= habitat.nama_habitat %>
+              </option>
+            <% }) %>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Ikan</button>
+      </form>
+      <a href="/ikan" class="btn btn-secondary mt-3">Kembali ke Daftar Ikan</a>
+    </div>
+
+    <%- include('footer') %>
+  </body>
+</html>

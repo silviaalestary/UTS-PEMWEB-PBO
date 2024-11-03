@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistem Informasi Manajemen Ikan</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <%- include('header') %>
+    <div class="container mt-5">
+      <!-- Card Section -->
+      <% if (isAuthenticated) { %>
+      <div class="row mb-4">
+        <div class="col-md-3">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-user"></i> User</h5>
+              <p class="card-text">Kelola informasi pengguna.</p>
+              <a href="/users" class="btn btn-primary">Lihat</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-fish"></i> Ikan</h5>
+              <p class="card-text">Lihat informasi tentang ikan.</p>
+              <a href="/ikan" class="btn btn-primary">Lihat</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-shark"></i> Spesies</h5>
+              <p class="card-text">Informasi tentang spesies ikan.</p>
+              <a href="/spesies" class="btn btn-primary">Lihat</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-water"></i> Habitat</h5>
+              <p class="card-text">Lihat habitat ikan yang berbeda.</p>
+              <a href="/habitat" class="btn btn-primary">Lihat</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %>
+      <h1 class="text-center">
+        Selamat Datang di Sistem Informasi Manajemen Ikan
+      </h1>
+      <p class="text-center mt-5">
+        Sistem ini dirancang untuk membantu dalam mengelola data ikan, meliputi
+        informasi spesies, lokasi, dan data penjualan. Aplikasi ini memberikan
+        akses yang mudah bagi pengguna untuk memantau dan mengelola informasi
+        terkait ikan secara efektif.
+      </p>
+
+      <!-- Testimoni Pengguna -->
+      <div class="text-center mb-4 mt-5">
+        <h3>Testimoni Pengguna</h3>
+        <blockquote class="blockquote">
+          <p class="mb-0">
+            "Sistem ini sangat membantu dalam pengelolaan data ikan saya!"
+          </p>
+          <footer class="blockquote-footer">Ahmad, Pemilik Toko Ikan</footer>
+        </blockquote>
+      </div>
+    </div>
+    <%- include('footer') %>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
